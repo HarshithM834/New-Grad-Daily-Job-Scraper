@@ -1,0 +1,27 @@
+{
+  "destinations": [
+    {
+      "type": "csv",
+      "enabled": true
+    },
+    {
+      "type": "json",
+      "enabled": false
+    },
+    {
+      "type": "pdf",
+      "enabled": false
+    },
+    {
+      "type": "google_sheets",
+      "enabled": false,
+      "spreadsheet_id": "",
+      "worksheet": "Jobs"
+    },
+    {
+      "type": "webhook",
+      "enabled": false,
+      "url": ""
+    }
+  ]
+}

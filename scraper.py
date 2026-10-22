@@ -15,6 +15,9 @@ import os
 import re
 import sys
 from dataclasses import dataclass, replace
+from datetime import datetime, timezone
+from collections import Counter
+import tempfile
 from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
@@ -410,58 +413,121 @@ def write_csv_atomic(path: Path, rows: list[dict[str, str]]) -> None:
     temporary.replace(path)
 
 
+def record_run(folder: Path, stats: dict) -> None:
+    """Append a machine-readable run summary; never log credentials or applicant notes."""
+    destination = folder / "scrape_runs.jsonl"
+    with destination.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(stats, ensure_ascii=False, sort_keys=True) + "\n")
+
+
+def record_metadata(folder: Path, jobs: list[tuple[Job, str]], before: list[dict[str, str]],
+                    after: list[dict[str, str]]) -> None:
+    """Keep feed provenance separate from the user's seven-column CSV schema."""
+    destination = folder / "job_metadata.json"
+    try:
+        records = json.loads(destination.read_text(encoding="utf-8")) if destination.exists() else {}
+    except (ValueError, OSError):
+        records = {}
+    if not isinstance(records, dict):
+        records = {}
+    before_links = {normalized_url(row.get("Link", "")) for row in before}
+    new_links = {normalized_url(row.get("Link", "")) for row in after} - before_links
+    timestamp = datetime.now(timezone.utc).isoformat()
+    for job, link in jobs:
+        if normalized_url(link) in new_links:
+            records[link] = {"category": job.category, "added_at": timestamp}
+    with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=folder,
+                                     prefix=".metadata-", suffix=".json", delete=False) as handle:
+        temp = Path(handle.name)
+        json.dump(records, handle, indent=2, ensure_ascii=False, sort_keys=True)
+    temp.replace(destination)
+
+
 async def run(path: Path, max_jobs: int, scroll_steps: int) -> int:
-    existing = read_tracker(path)
-    LOGGER.info("Existing tracker: %d rows", len(existing))
-    async with async_playwright() as p:
-        browser: Browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context(viewport={"width": 1440, "height": 1000},
-                                            user_agent=("Mozilla/5.0 (X11; Linux x86_64) "
-                                                        "AppleWebKit/537.36 (KHTML, like Gecko) "
-                                                        "Chrome/130.0.0.0 Safari/537.36"))
+    started = datetime.now(timezone.utc)
+    stats = {
+        "started_at": started.isoformat(), "status": "failed",
+        "sources_checked": 0, "collected": 0, "checked": 0,
+        "added": 0, "unresolved": 0, "categories": {},
+    }
+    try:
+        existing = read_tracker(path)
+        LOGGER.info("Existing tracker: %d rows", len(existing))
+        async with async_playwright() as p:
+            browser: Browser = await p.chromium.launch(headless=True)
+            context = await browser.new_context(viewport={"width": 1440, "height": 1000},
+                                                user_agent=("Mozilla/5.0 (X11; Linux x86_64) "
+                                                            "AppleWebKit/537.36 (KHTML, like Gecko) "
+                                                            "Chrome/130.0.0.0 Safari/537.36"))
+            try:
+                # Count successful feeds individually. If any fail, abort before writes.
+                collected: list[Job] = []
+                seen: set[str] = set()
+                by_source: dict[str, int] = {}
+                for source in SOURCES:
+                    batch = await collect_jobs(context, source=source,
+                                               max_jobs=max_jobs, scroll_steps=scroll_steps)
+                    stats["sources_checked"] += 1
+                    by_source[source.category] = len(batch)
+                    for job in batch:
+                        if job.job_id not in seen:
+                            seen.add(job.job_id)
+                            collected.append(replace(job, category=source.category))
+                stats["categories"] = by_source
+                stats["collected"] = len(collected)
+                already = {(normalized(row.get("Company", "")), normalized(row.get("Role", "")),
+                            normalized(row.get("Location", ""))) for row in existing}
+                pending = [job for job in collected if (normalized(job.company), normalized(job.role),
+                                                      normalized(job.location)) not in already]
+                stats["checked"] = len(pending)
+                LOGGER.info("Scraped %d unique jobs; %d untracked", len(collected), len(pending))
+                confirmed: list[tuple[Job, str]] = []
+                unresolved: list[Job] = []
+                for i, job in enumerate(pending, 1):
+                    url = await resolve_direct_link(context, job)
+                    if url:
+                        confirmed.append((job, url))
+                        LOGGER.info("[%d/%d] Found employer URL: %s (%s)",
+                                    i, len(pending), job.company, url)
+                    else:
+                        unresolved.append(job)
+                        LOGGER.info("[%d/%d] Skipped unresolved: %s / %s", i, len(pending),
+                                    job.company, job.role)
+                    await asyncio.sleep(0.7)
+                merged, added = merge_rows(existing, confirmed)
+                if added:
+                    write_csv_atomic(path, merged)
+                    record_metadata(path.parent, confirmed, existing, merged)
+                # Review-only Jobright links stay OUT of the main tracker.
+                with (path.parent / "unresolved_jobs.csv").open("w", encoding="utf-8-sig", newline="") as handle:
+                    writer = csv.writer(handle)
+                    writer.writerow(["Category", "Company", "Role", "Location", "Jobright Source (review only)"])
+                    for job in unresolved:
+                        writer.writerow([job.category, job.company, job.role, job.location, job.source_url])
+                stats.update(status="success", added=added, unresolved=len(unresolved),
+                             resolved=len(confirmed), tracker_total=len(merged))
+                LOGGER.info("Complete: added %d, unresolved %d, total %d", added, len(unresolved), len(merged))
+                return added
+            finally:
+                await context.close()
+                await browser.close()
+    except Exception as exc:
+        # Failed runs are visible in observability, but existing tracker is preserved.
+        stats["error"] = type(exc).__name__
+        raise
+    finally:
+        ended = datetime.now(timezone.utc)
+        stats["finished_at"] = ended.isoformat()
+        stats["duration_seconds"] = round((ended - started).total_seconds(), 2)
         try:
-            jobs = await collect_all_jobs(context, max_jobs_per_source=max_jobs,
-                                          scroll_steps=scroll_steps)
-            already = {(normalized(row.get("Company", "")), normalized(row.get("Role", "")),
-                        normalized(row.get("Location", ""))) for row in existing}
-            pending = [job for job in jobs if (normalized(job.company), normalized(job.role),
-                                               normalized(job.location)) not in already]
-            LOGGER.info("Scraped %d; %d not already matched in tracker", len(jobs), len(pending))
-            confirmed: list[tuple[Job, str]] = []
-            unresolved: list[Job] = []
-            for i, job in enumerate(pending, 1):
-                url = await resolve_direct_link(context, job)
-                if url:
-                    confirmed.append((job, url))
-                    LOGGER.info("[%d/%d] Found employer URL: %s (%s)",
-                                i, len(pending), job.company, url)
-                else:
-                    unresolved.append(job)
-                    LOGGER.info("[%d/%d] Skipped unresolved: %s / %s", i, len(pending),
-                                job.company, job.role)
-                # Low request rate to avoid overloading source sites.
-                await asyncio.sleep(0.7)
-            merged, added = merge_rows(existing, confirmed)
-            if added:
-                write_csv_atomic(path, merged)
-            # Secondary log contains Jobright source links solely for manual review;
-            # the actual tracker never receives a Jobright URL.
-            with (path.parent / "unresolved_jobs.csv").open("w", encoding="utf-8-sig", newline="") as f:
-                w = csv.writer(f)
-                w.writerow(["Category", "Company", "Role", "Location", "Jobright Source (review only)"])
-                for job in unresolved:
-                    w.writerow([job.category, job.company, job.role, job.location, job.source_url])
-            LOGGER.info("Complete: %d new rows, %d unresolved (tracker total %d)",
-                        added, len(unresolved), len(merged))
-            return added
-        finally:
-            await context.close()
-            await browser.close()
+            record_run(path.parent, stats)
+        except OSError:
+            LOGGER.exception("Unable to record run history")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Collect SWE, DE and AI/ML new grad jobs with real employer links")
-    parser.add_argument("--csv", type=Path, default=Path(__file__).parent / "2027 New Grad Positions Tracker - Sheet1.csv")
+    parser.add_argument("--csv", type=Path, default=Path(os.environ.get("CAREEROPS_CSV_PATH", str(Path(__file__).parent / "2027 New Grad Positions Tracker - Sheet1.csv"))))
     parser.add_argument("--max-jobs-per-source", "--max-jobs", dest="max_jobs_per_source",
                         type=int, default=int(os.getenv("MAX_JOBS_PER_SOURCE", os.getenv("MAX_JOBS", "50"))),
                         help="Maximum listings to retrieve from EACH of the three feeds (default: 50)")
@@ -477,6 +543,15 @@ def main() -> None:
     except Exception:
         LOGGER.exception("Scraper failed without overwriting the existing tracker")
         sys.exit(1)
+    # Enabled output destinations are optional and run after the local CSV is saved.
+    # Individual connector failure is logged; it never rolls back collected jobs.
+    if os.getenv("CAREEROPS_DESTINATIONS_JSON") or (args.csv.parent / "destinations.local.json").exists():
+        from output_connectors import export_all
+        result = export_all(csv_path=args.csv, config_path=args.csv.parent / "destinations.local.json")
+        for entry in result["results"]:
+            LOGGER.info("Destination %s: %s", entry["type"], entry["status"])
+        if any(entry["status"] == "failed" for entry in result["results"]):
+            LOGGER.warning("Some configured destinations could not be synchronized")
 
 
 if __name__ == "__main__":

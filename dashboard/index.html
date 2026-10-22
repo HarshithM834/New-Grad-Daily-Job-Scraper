@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="A local-first dashboard for intelligent new graduate job sourcing and application tracking.">
+  <title>CareerOps · Job Intelligence</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/dashboard.css">
+  <script defer src="/dashboard.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true"><span class="brand-glyph">C</span><span class="brand-dot"></span></div>
+        <div class="brand-text"><strong>careerops<span class="brand-period">.</span></strong><small>INTELLIGENCE PLATFORM</small></div>
+      </div>
+      <div class="sidebar-scroll">
+        <p class="nav-group">WORKSPACE</p>
+        <nav class="nav-list" aria-label="Dashboard views">
+          <button class="nav-item active" type="button" data-page="overview" aria-current="page"><span class="nav-icon" data-icon="grid"></span><span>Overview</span></button>
+          <button class="nav-item" type="button" data-page="explorer"><span class="nav-icon" data-icon="search"></span><span>Job Explorer</span><span class="nav-count" id="side-jobs-count">—</span></button>
+          <button class="nav-item" type="button" data-page="pipeline"><span class="nav-icon" data-icon="layers"></span><span>Application Pipeline</span></button>
+          <button class="nav-item" type="button" data-page="health"><span class="nav-icon" data-icon="activity"></span><span>System Health</span></button><button class="nav-item" type="button" data-page="destinations"><span class="nav-icon" data-icon="plug"></span><span>Output Destinations</span></button>
+        </nav>
+        <div class="nav-separator"></div>
+        <div class="nav-group-row"><p class="nav-group">DATA SOURCES</p><span class="source-total">03</span></div>
+        <div class="source-nav"><a href="https://www.newgrad-jobs.com/?k=swe" target="_blank" rel="noopener noreferrer" class="source-item"><span class="source-dot indigo"></span><span>Software Engineering</span><span class="external-glyph">↗</span></a><a href="https://www.newgrad-jobs.com/?k=de" target="_blank" rel="noopener noreferrer" class="source-item"><span class="source-dot cyan"></span><span>Data Engineering</span><span class="external-glyph">↗</span></a><a href="https://www.newgrad-jobs.com/?k=aiml" target="_blank" rel="noopener noreferrer" class="source-item"><span class="source-dot violet"></span><span>AI / Machine Learning</span><span class="external-glyph">↗</span></a></div>
+      </div>
+      <div class="sidebar-footer"><div class="footer-status"><span class="status-pulse"></span><span>Local · Private workspace</span></div><span class="footer-caption">v1.0 · 2027 Early Careers</span></div>
+    </aside>
+    <main class="main-content" id="main" tabindex="-1">
+      <header class="topbar"><div class="topbar-left"><div class="mobile-logo">careerops<span>.</span></div><span class="workspace-label">WORKSPACE <span class="slash">/</span> <span id="breadcrumb">OVERVIEW</span></span></div><div class="topbar-actions"><span class="today" id="today-label"></span><span class="topbar-line"></span><div class="user-avatar" aria-label="Local user">NG</div></div></header>
+      <div class="content-wrap">
+        <div id="error-banner" class="error-banner hidden" role="alert"></div>
+        <section class="view active" id="page-overview" aria-labelledby="overview-title">
+          <div class="page-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span>2027 EARLY CAREERS / WORKSPACE</span><h1 id="overview-title">Your search, <em>in focus.</em></h1><p class="heading-description">A complete view of opportunities, applications, and sourcing performance.</p></div><div class="heading-actions"><button class="btn btn-secondary" id="overview-export" type="button"><span data-icon="download"></span>Export CSV</button><button class="btn btn-primary" id="overview-explore" type="button">Explore Jobs <span data-icon="arrow"></span></button></div></div>
+          <div class="section-label"><span>PERFORMANCE SNAPSHOT</span><span class="last-refreshed" id="refreshed-label">From local tracker</span></div>
+          <div class="metric-grid" id="metric-grid" aria-label="Key performance indicators"></div>
+          <div class="overview-grid">
+            <section class="panel distribution-panel"><div class="panel-heading"><div><h2>Application distribution</h2><p>Current status across all tracked opportunities</p></div><span class="tiny-chip">LIVE DATA</span></div><div class="chart-section"><div class="donut-wrap"><div class="donut" id="stage-donut" role="img" aria-label="Stage distribution"><div class="donut-hole"><span class="donut-value" id="donut-total">—</span><span class="donut-label">TOTAL JOBS</span></div></div></div><div class="legend" id="stage-legend"></div></div></section>
+            <section class="panel company-panel"><div class="panel-heading"><div><h2>Top companies</h2><p>Most represented employers in your tracker</p></div><span class="tiny-chip">TOP 5</span></div><div class="companies-chart" id="companies-chart"></div></section>
+          </div>
+          <div class="overview-bottom">
+            <section class="panel activity-panel"><div class="panel-heading"><div><h2>Sourcing activity</h2><p>New jobs added per automated run</p></div><button class="small-link" type="button" data-navigate="health">View health <span>↗</span></button></div><div class="trend-content" id="trend-content"></div></section>
+            <section class="panel next-panel"><div class="panel-heading"><div><h2>Action queue</h2><p>Opportunities that need your attention</p></div><span class="queue-pill" id="queue-pill">—</span></div><div id="queue-list" class="queue-list"></div><button type="button" class="panel-footer-button" id="view-queue">Open all opportunities <span>→</span></button></section>
+          </div>
+        </section>
+        <section class="view" id="page-explorer" aria-labelledby="explorer-title">
+          <div class="page-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span>DISCOVER / TRACK / ACT</span><h1 id="explorer-title">Job <em>Explorer.</em></h1><p class="heading-description">Search your opportunities, review links, and update application progress.</p></div><div class="heading-actions"><button class="btn btn-secondary" type="button" id="explorer-export"><span data-icon="download"></span>Export filtered</button></div></div>
+          <div class="panel explorer-panel"><div class="filters"><label class="searchbox"><span data-icon="search"></span><input type="search" id="search-input" placeholder="Search by company, role, or location..." autocomplete="off" aria-label="Search jobs"></label><select id="stage-filter" aria-label="Filter by stage"><option value="all">All stages</option><option value="Not Applied">Not Applied</option><option value="Applied">Applied</option><option value="Coding Assessment">Coding Assessment</option><option value="Interview">Interview</option><option value="Offer">Offer</option><option value="Declined/Rejected">Declined/Rejected</option><option value="">Uncategorized</option></select><select id="source-filter" aria-label="Filter by source"><option value="all">All sources</option><option value="SWE">Software Engineering</option><option value="DE">Data Engineering</option><option value="AI/ML">AI / ML</option><option value="Unknown">Historical / Unknown</option></select><label class="todo-toggle"><input id="todo-filter" type="checkbox"><span class="toggle-box"></span>Needs action</label></div><div class="table-caption"><span id="results-count">Loading...</span><span class="hint">Select a row to view details</span></div><div class="table-wrap"><table class="jobs-table" aria-label="Tracked job opportunities"><thead><tr><th scope="col">COMPANY / POSITION</th><th scope="col">LOCATION</th><th scope="col">STAGE</th><th scope="col">SOURCE</th><th scope="col">ACTION</th><th scope="col"><span class="sr-only">Open details</span></th></tr></thead><tbody id="jobs-table-body"></tbody></table></div><div class="pagination"><span id="pagination-label"></span><div class="pagination-buttons"><button type="button" id="prev-page" aria-label="Previous page">←</button><button type="button" id="next-page" aria-label="Next page">→</button></div></div></div>
+        </section>
+        <section class="view" id="page-pipeline" aria-labelledby="pipeline-title"><div class="page-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span>APPLICANT TRACKING SYSTEM</span><h1 id="pipeline-title">Your <em>pipeline.</em></h1><p class="heading-description">A board of application stages. Select any opportunity to update it.</p></div></div><div class="pipeline-stats" id="pipeline-stats"></div><div class="board-container" id="kanban-board" aria-label="Application pipeline board"></div><p class="board-note">Stages reflect the current CSV values, not a historical progression or hiring outcome prediction.</p></section>
+        <section class="view" id="page-health" aria-labelledby="health-title"><div class="page-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span>DATA INTEGRITY / OBSERVABILITY</span><h1 id="health-title">System <em>health.</em></h1><p class="heading-description">Transparent monitoring of automation, link quality, and data provenance.</p></div></div><div class="health-alert" id="health-alert"></div><div class="metric-grid health-metrics" id="health-metrics"></div><div class="health-grid"><section class="panel"><div class="panel-heading"><div><h2>Configured feeds</h2><p>Automated collection targets</p></div><span class="tiny-chip">3 SOURCES</span></div><div class="feeds-list" id="feeds-list"></div></section><section class="panel"><div class="panel-heading"><div><h2>Data quality checks</h2><p>Verifiable properties of the current tracker</p></div><span class="tiny-chip">LIVE CHECKS</span></div><div class="quality-list" id="quality-list"></div></section></div><section class="panel run-history-panel"><div class="panel-heading"><div><h2>Automation run history</h2><p>Recorded successes, failures, and unresolved employer links</p></div><span class="tiny-chip">AUDIT TRAIL</span></div><div id="run-history"></div></section></section>
+        <section class="view" id="page-destinations" aria-labelledby="destinations-title">
+          <div class="page-heading"><div><span class="eyebrow"><span class="eyebrow-line"></span>CONNECT / EXPORT / AUTOMATE</span><h1 id="destinations-title">Output <em>destinations.</em></h1><p class="heading-description">Collect once. Route your data where you need it.</p></div></div>
+          <div class="section-label"><span>CONNECTED WORKFLOWS</span><span id="connector-status">Configure locally</span></div>
+          <div class="destination-grid" id="destination-grid"></div>
+          <div class="connector-footer"><button class="btn btn-primary" id="save-destinations" type="button">Save destinations</button><button class="btn btn-secondary" id="sync-destinations" type="button">Sync enabled outputs now</button><span class="export-status" id="sync-status" aria-live="polite"></span></div>
+          <div class="panel" style="padding:23px 25px;margin-top:23px"><div class="panel-heading" style="padding:0"><div><h2>One-click exports</h2><p>Download a snapshot without configuring a connector.</p></div></div><div class="export-row"><a class="btn btn-secondary" href="/download/tracker.csv" download>Download CSV</a><a class="btn btn-secondary" href="/download/jobs.json" download>Download JSON</a><a class="btn btn-secondary" href="/download/report.pdf" download>Download PDF report</a></div></div>
+          <div class="connector-note" style="margin-top:21px">Credentials are never entered into this dashboard. To enable Google Sheets, create a service account and set <code>GOOGLE_APPLICATION_CREDENTIALS</code> on the machine or GitHub Actions runner. Share the target spreadsheet with the service account email. For authenticated webhook requests, set <code>CAREEROPS_WEBHOOK_TOKEN</code>. Destination preferences are saved only in local <code>destinations.local.json</code> and are not committed. The Google Sheet is an output snapshot, not bidirectional sync.</div>
+        </section>
+      </div>
+      <footer class="main-footer"><span>CareerOps / Built for clarity, data integrity, and reliable workflows.</span><span>Private, local-first dashboard · All metrics from your own data</span></footer>
+    </main>
+  </div>
+  <div class="mobile-nav" aria-label="Mobile navigation"><button type="button" data-mobile-page="overview">Overview</button><button type="button" data-mobile-page="explorer">Jobs</button><button type="button" data-mobile-page="pipeline">Pipeline</button><button type="button" data-mobile-page="health">Health</button><button type="button" data-mobile-page="destinations">Outputs</button></div>
+  <div class="modal-layer hidden" id="drawer-layer"><div class="drawer-backdrop" id="drawer-backdrop"></div><aside class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" tabindex="-1"><div class="drawer-header"><span class="eyebrow">OPPORTUNITY DETAILS</span><button class="close-button" id="close-drawer" type="button" aria-label="Close details">×</button></div><div id="drawer-body"></div></aside></div>
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

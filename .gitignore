@@ -3,3 +3,9 @@ __pycache__/
 .venv/
 .pytest_cache/
 .DS_Store
+# Local credentials and destination configuration
+destinations.local.json
+exports/
+*.credentials.json
+service-account*.json
+.env

@@ -2,7 +2,7 @@ name: Daily new grad SWE, DE and AI/ML jobs
 
 on:
   schedule:
-    - cron: '0 13 * * *' # 13:00 UTC; 9am EDT / 8am EST
+    - cron: '0 13 * * *' # 13:00 UTC: 9am EDT / 8am EST
   workflow_dispatch:
 
 permissions:
@@ -17,32 +17,48 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 55
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           persist-credentials: true
-      - name: Python 3.12
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
           cache: pip
-      - name: Install dependencies
+      - name: Install dependencies and Chromium
         run: |
           python -m pip install -r requirements.txt
           python -m playwright install --with-deps chromium
-      - name: Scrape all three job feeds and resolve employer application URLs
+      - name: Run automated tests
+        run: python -m unittest discover -s tests -v
+      - name: Configure optional output credentials
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          if [ -n "$GOOGLE_SERVICE_ACCOUNT_JSON" ]; then
+            printf '%s' "$GOOGLE_SERVICE_ACCOUNT_JSON" > "$RUNNER_TEMP/careerops-sa.json"
+            chmod 600 "$RUNNER_TEMP/careerops-sa.json"
+            echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/careerops-sa.json" >> "$GITHUB_ENV"
+          fi
+      - name: Scrape all three sources and sync configured destinations
         env:
           MAX_JOBS_PER_SOURCE: '50'
           SCROLL_STEPS: '24'
+          CAREEROPS_DESTINATIONS_JSON: ${{ secrets.CAREEROPS_DESTINATIONS_JSON }}
+          CAREEROPS_WEBHOOK_TOKEN: ${{ secrets.CAREEROPS_WEBHOOK_TOKEN }}
         run: python scraper.py
-      - name: Commit new jobs to tracker
+      - name: Commit tracker and observability records
+        if: always()
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add '2027 New Grad Positions Tracker - Sheet1.csv' unresolved_jobs.csv
+          for file in '2027 New Grad Positions Tracker - Sheet1.csv' unresolved_jobs.csv scrape_runs.jsonl job_metadata.json; do
+            if [ -f "$file" ]; then git add -- "$file"; fi
+          done
           if ! git diff --cached --quiet; then
-            git commit -m 'Update SWE, DE and AI/ML new grad tracker'
+            git commit -m 'Update job tracker and scrape observability'
             git push
           else
-            echo 'No changes to tracker'
+            echo 'No tracker changes'
           fi
