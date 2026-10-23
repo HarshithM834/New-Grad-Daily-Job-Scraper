@@ -96,10 +96,13 @@ class ConnectorTests(unittest.TestCase):
 
     def test_environment_secret_supports_scheduled_connectors(self):
         config = config_template()
-        config['destinations'][1]['enabled'] = True
+        # Select by stable connector type, not list index: new integrations
+        # (such as Excel) must not break unrelated configuration tests.
+        next(x for x in config['destinations'] if x['type'] == 'json')['enabled'] = True
         with patch.dict(os.environ, {'CAREEROPS_DESTINATIONS_JSON':json.dumps(config)}):
             found = load_config(self.config)
         self.assertTrue(next(x for x in found['destinations'] if x['type']=='json')['enabled'])
+        self.assertFalse(next(x for x in found['destinations'] if x['type']=='excel')['enabled'])
 
     def test_reject_private_and_insecure_webhooks(self):
         for url in ['http://example.com/x','https://localhost/api','https://127.0.0.1/xx',
