@@ -9,3 +9,7 @@ exports/
 *.credentials.json
 service-account*.json
 .env
+# Optional React dashboard build and cache
+web/node_modules/
+web/dist/
+web/.vite/

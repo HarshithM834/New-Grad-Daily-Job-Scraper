@@ -22,6 +22,7 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
+from entry_level import classify_role, select_categories
 from playwright.async_api import Browser, BrowserContext, Frame, Page, Response, async_playwright
 
 LOGGER = logging.getLogger("newgrad_scraper")
@@ -435,7 +436,8 @@ def record_metadata(folder: Path, jobs: list[tuple[Job, str]], before: list[dict
     timestamp = datetime.now(timezone.utc).isoformat()
     for job, link in jobs:
         if normalized_url(link) in new_links:
-            records[link] = {"category": job.category, "added_at": timestamp}
+            records[link] = {"category": job.category, "added_at": timestamp,
+                             "eligibility": classify_role(job.role)}
     with tempfile.NamedTemporaryFile("w", encoding="utf-8", dir=folder,
                                      prefix=".metadata-", suffix=".json", delete=False) as handle:
         temp = Path(handle.name)
@@ -443,12 +445,15 @@ def record_metadata(folder: Path, jobs: list[tuple[Job, str]], before: list[dict
     temp.replace(destination)
 
 
-async def run(path: Path, max_jobs: int, scroll_steps: int) -> int:
+async def run(path: Path, max_jobs: int, scroll_steps: int,
+              categories: tuple[str, ...] | None = None,
+              likely_new_grad_only: bool = False) -> int:
     started = datetime.now(timezone.utc)
     stats = {
         "started_at": started.isoformat(), "status": "failed",
         "sources_checked": 0, "collected": 0, "checked": 0,
         "added": 0, "unresolved": 0, "categories": {},
+        "excluded_by_filter": 0, "eligibility": {},
     }
     try:
         existing = read_tracker(path)
@@ -465,6 +470,8 @@ async def run(path: Path, max_jobs: int, scroll_steps: int) -> int:
                 seen: set[str] = set()
                 by_source: dict[str, int] = {}
                 for source in SOURCES:
+                    if categories is not None and source.category not in categories:
+                        continue
                     batch = await collect_jobs(context, source=source,
                                                max_jobs=max_jobs, scroll_steps=scroll_steps)
                     stats["sources_checked"] += 1
@@ -475,10 +482,15 @@ async def run(path: Path, max_jobs: int, scroll_steps: int) -> int:
                             collected.append(replace(job, category=source.category))
                 stats["categories"] = by_source
                 stats["collected"] = len(collected)
+                stats["eligibility"] = dict(Counter(classify_role(job.role) for job in collected))
                 already = {(normalized(row.get("Company", "")), normalized(row.get("Role", "")),
                             normalized(row.get("Location", ""))) for row in existing}
                 pending = [job for job in collected if (normalized(job.company), normalized(job.role),
                                                       normalized(job.location)) not in already]
+                if likely_new_grad_only:
+                    eligible = [job for job in pending if classify_role(job.role) == "likely"]
+                    stats["excluded_by_filter"] = len(pending) - len(eligible)
+                    pending = eligible
                 stats["checked"] = len(pending)
                 LOGGER.info("Scraped %d unique jobs; %d untracked", len(collected), len(pending))
                 confirmed: list[tuple[Job, str]] = []
@@ -532,6 +544,10 @@ def main() -> None:
                         type=int, default=int(os.getenv("MAX_JOBS_PER_SOURCE", os.getenv("MAX_JOBS", "50"))),
                         help="Maximum listings to retrieve from EACH of the three feeds (default: 50)")
     parser.add_argument("--scroll-steps", type=int, default=int(os.getenv("SCROLL_STEPS", "24")))
+    parser.add_argument("--categories", default=os.getenv("CAREEROPS_CATEGORIES", "all"),
+                        help="Comma-separated SWE,DE,AI/ML (default: all)")
+    parser.add_argument("--likely-new-grad-only", action="store_true",
+                        help="Skip titles without explicit junior/graduate evidence; ambiguous roles excluded")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     if args.max_jobs_per_source < 1 or args.scroll_steps < 0:
@@ -539,7 +555,12 @@ def main() -> None:
     if not args.csv.exists():
         parser.error(f"Tracker CSV does not exist: {args.csv}")
     try:
-        asyncio.run(run(args.csv, args.max_jobs_per_source, args.scroll_steps))
+        selected = select_categories(args.categories)
+    except ValueError as exc:
+        parser.error(str(exc))
+    try:
+        asyncio.run(run(args.csv, args.max_jobs_per_source, args.scroll_steps,
+                        categories=selected, likely_new_grad_only=args.likely_new_grad_only))
     except Exception:
         LOGGER.exception("Scraper failed without overwriting the existing tracker")
         sys.exit(1)

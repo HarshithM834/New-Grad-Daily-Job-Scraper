@@ -26,6 +26,7 @@ CSV_FILE = Path(os.environ.get("CAREEROPS_CSV_PATH", str(ROOT / "2027 New Grad P
 RUNS_FILE = ROOT / "scrape_runs.jsonl"
 METADATA_FILE = ROOT / "job_metadata.json"
 ASSETS = ROOT / "dashboard"
+WEB_DIST = ROOT / "web" / "dist"
 HEADERS = ["Company", "Role", "Link", "Location", "Stage", "To-do", "Notes"]
 STAGES = ["Not Applied", "Applied", "Coding Assessment", "Interview", "Offer", "Declined/Rejected", ""]
 FEEDS = [
@@ -229,6 +230,18 @@ class DashboardHandler(BaseHTTPRequestHandler):
             except Exception:
                 LOGGER.exception("PDF export failed")
                 self.reply(500, {"error": "PDF report could not be produced"})
+            return
+        # Prefer the built React dashboard; retain the original local UI if absent.
+        if WEB_DIST.is_dir() and (route == "/" or route.startswith("/assets/")):
+            candidate = (WEB_DIST / ("index.html" if route == "/" else route.lstrip("/"))).resolve()
+            if candidate.is_relative_to(WEB_DIST.resolve()) and candidate.is_file():
+                from mimetypes import guess_type
+                mime = guess_type(candidate.name)[0] or "application/octet-stream"
+                if mime == "text/javascript":
+                    mime = "application/javascript"
+                self.send_headers(200, mime, candidate.read_bytes())
+                return
+            self.reply(404, {"error": "Asset not found"})
             return
         static = {"/": ("index.html", "text/html; charset=utf-8"),
                   "/dashboard.css": ("dashboard.css", "text/css; charset=utf-8"),

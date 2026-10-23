@@ -163,3 +163,34 @@ Potential extensions include a plugin registry for additional job boards, SQLite
 ---
 
 <div align="center"><sub>CareerOps · Built with Python, Playwright, native web technologies, and a preference for observable, portable data flows.</sub></div>
+
+## CareerOps v1 development preview
+
+The optional modern dashboard source lives in `web/` (React, Vite, Tailwind, owned shadcn-style components, Radix accessibility primitives). It complements rather than replaces the dependency-free fallback dashboard.
+
+```bash
+# Install the normal Python dependencies and Chromium as above.
+cd web
+npm install
+npm run build
+cd ..
+python dashboard_server.py
+# Visit http://127.0.0.1:8765
+```
+
+For UI development, run `npm run dev` from `web/` with the Python server running in another terminal. Without `web/dist/`, the original dashboard remains available.
+
+### Optional source and seniority filtering
+
+```bash
+python scraper.py --categories SWE,DE --max-jobs-per-source 25
+python scraper.py --categories AI/ML --likely-new-grad-only
+```
+
+The `--likely-new-grad-only` flag uses explicit job-title evidence and deliberately excludes ambiguous roles; it is **off by default** to avoid losing potentially relevant jobs. The source's `isNewGrad` field is not treated as a reliable hard filter.
+
+### Source-contract checks and contributing
+
+Run `python feed_health.py --json` for read-only feed-contract diagnostics. It does not verify all pages or final application links. See [CONTRIBUTING.md](CONTRIBUTING.md) and [DESIGN.md](DESIGN.md); the code is under the [MIT License](LICENSE).
+
+> **Privacy warning:** This repository currently contains a previously committed personal CSV tracker. For an open-source release, remove personal application data from the published repository and its Git history (if appropriate) and use the sanitized example CSV instead. Never commit credentials.

@@ -1,0 +1,22 @@
+name: Dashboard typecheck and build
+on:
+  push:
+    paths:
+      - 'web/**'
+      - '.github/workflows/web-build.yml'
+  pull_request:
+    paths:
+      - 'web/**'
+      - '.github/workflows/web-build.yml'
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+        working-directory: web
+      - run: npm run build
+        working-directory: web
