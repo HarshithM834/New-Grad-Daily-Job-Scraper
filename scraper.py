@@ -23,6 +23,7 @@ from typing import Any
 from urllib.parse import parse_qsl, urlencode, urlparse, urlunparse
 
 from entry_level import classify_role, select_categories
+from scraper_reliability import employer_application_url, update_unresolved_queue
 from playwright.async_api import Browser, BrowserContext, Frame, Page, Response, async_playwright
 
 LOGGER = logging.getLogger("newgrad_scraper")
@@ -84,18 +85,8 @@ def normalized_url(value: str) -> str:
 
 
 def employer_url(value: str) -> str | None:
-    """Never accept aggregator pages, social sites, or Jobright as direct apply."""
-    url = (value or "").strip()
-    parsed = urlparse(url)
-    host = (parsed.hostname or "").lower()
-    if parsed.scheme not in ("http", "https") or not host:
-        return None
-    if any(host == block or host.endswith("." + block) for block in BAD_HOSTS):
-        return None
-    if host in ("localhost", "127.0.0.1"):
-        return None
-    # Applications frequently have their own third-party ATS domain.
-    return url
+    """Structurally validate a job-specific employer URL, not a generic homepage."""
+    return employer_application_url(value)
 
 
 def extract_jobs(payload: Any) -> list[Job]:
@@ -254,6 +245,21 @@ async def collect_jobs(context: BrowserContext, *, source: FeedSource, max_jobs:
         await page.close()
 
 
+async def collect_with_retry(context: BrowserContext, *, source: FeedSource,
+                             max_jobs: int, scroll_steps: int, attempts: int = 3) -> list[Job]:
+    """Retry a failing source, then surface its failure; never mark it successful."""
+    for i in range(attempts):
+        try:
+            return await collect_jobs(context, source=source, max_jobs=max_jobs,
+                                      scroll_steps=scroll_steps)
+        except Exception as exc:
+            if i == attempts - 1:
+                raise RuntimeError(f"{source.category} failed after {attempts} attempts: {exc}") from exc
+            LOGGER.warning("Retrying %s feed (%d/%d): %s", source.category, i + 1, attempts, exc)
+            await asyncio.sleep(min(2 ** i, 6))
+    return []
+
+
 async def collect_all_jobs(context: BrowserContext, *, max_jobs_per_source: int,
                            scroll_steps: int) -> list[Job]:
     """Collect every configured feed; deduplicate one job appearing in multiple feeds.
@@ -263,7 +269,7 @@ async def collect_all_jobs(context: BrowserContext, *, max_jobs_per_source: int,
     """
     gathered: list[Job] = []
     for source in SOURCES:
-        batch = await collect_jobs(context, source=source,
+        batch = await collect_with_retry(context, source=source,
                                    max_jobs=max_jobs_per_source,
                                    scroll_steps=scroll_steps)
         LOGGER.info("%s: collected %d rows", source.category, len(batch))
@@ -472,7 +478,7 @@ async def run(path: Path, max_jobs: int, scroll_steps: int,
                 for source in SOURCES:
                     if categories is not None and source.category not in categories:
                         continue
-                    batch = await collect_jobs(context, source=source,
+                    batch = await collect_with_retry(context, source=source,
                                                max_jobs=max_jobs, scroll_steps=scroll_steps)
                     stats["sources_checked"] += 1
                     by_source[source.category] = len(batch)
@@ -510,12 +516,10 @@ async def run(path: Path, max_jobs: int, scroll_steps: int,
                 if added:
                     write_csv_atomic(path, merged)
                     record_metadata(path.parent, confirmed, existing, merged)
-                # Review-only Jobright links stay OUT of the main tracker.
-                with (path.parent / "unresolved_jobs.csv").open("w", encoding="utf-8-sig", newline="") as handle:
-                    writer = csv.writer(handle)
-                    writer.writerow(["Category", "Company", "Role", "Location", "Jobright Source (review only)"])
-                    for job in unresolved:
-                        writer.writerow([job.category, job.company, job.role, job.location, job.source_url])
+                # Preserve unresolved listings across runs and remove resolved ones.
+                stats["unresolved_queue_size"] = update_unresolved_queue(
+                    path.parent / "unresolved_jobs.csv", unresolved,
+                    resolved=[job for job, _ in confirmed])
                 stats.update(status="success", added=added, unresolved=len(unresolved),
                              resolved=len(confirmed), tracker_total=len(merged))
                 LOGGER.info("Complete: added %d, unresolved %d, total %d", added, len(unresolved), len(merged))

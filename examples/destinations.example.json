@@ -5,6 +5,10 @@
       "enabled": true
     },
     {
+      "type": "excel",
+      "enabled": false
+    },
+    {
       "type": "json",
       "enabled": false
     },

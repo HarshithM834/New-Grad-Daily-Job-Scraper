@@ -194,3 +194,27 @@ The `--likely-new-grad-only` flag uses explicit job-title evidence and deliberat
 Run `python feed_health.py --json` for read-only feed-contract diagnostics. It does not verify all pages or final application links. See [CONTRIBUTING.md](CONTRIBUTING.md) and [DESIGN.md](DESIGN.md); the code is under the [MIT License](LICENSE).
 
 > **Privacy warning:** This repository currently contains a previously committed personal CSV tracker. For an open-source release, remove personal application data from the published repository and its Git history (if appropriate) and use the sanitized example CSV instead. Never commit credentials.
+
+## Multi-source new-grad collection
+
+CareerOps now connects **six providers** (three categories on newgrad-jobs.com plus five GitHub-maintained new-grad sources) through one command. Each community feed supplies direct employer URLs when available; the Jobright source still tries the actual Apply Now redirect and queues unresolved listings.
+
+```bash
+# Fetch all six providers and sync enabled destinations
+python careerops.py
+
+# Preview curated feeds without touching your tracker or starting Chromium
+python careerops.py --dry-run
+
+# Run curated sources only
+python careerops.py --skip-jobright
+
+# Select sources and categories
+python careerops.py --community-feeds vansh,speedy-swe,applyguy --categories SWE,DE
+```
+
+The default collection is **new-grad and entry-level only**. Explicit internships, senior and lead roles are filtered out. Dedicated graduate-list inclusion counts as eligibility evidence for otherwise unmarked community roles; Jobright's ambiguous roles are excluded by default. Job postings can close or be mislabeled. External employer links from curated lists are screened for being job-specific but are not guaranteed live.
+
+All existing outputs remain configurable by the user: CSV, JSON, printable PDF, Google Sheets, HTTPS webhook, plus optional Excel (`artifact_tool` required). The system remains local-first and preserves all existing application stages and notes. See [MULTISOURCE.md](MULTISOURCE.md) and [SOURCES.md](SOURCES.md) for implementation details, URLs and caveats.
+
+A scheduled workflow collects these sources daily. To operate an open-source template safely, keep your own tracker private: this repository **already contains a personal tracker in prior commits** and removing the latest file alone will not purge it from history.

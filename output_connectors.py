@@ -21,7 +21,7 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_CSV = Path(os.environ.get("CAREEROPS_CSV_PATH", str(ROOT / "2027 New Grad Positions Tracker - Sheet1.csv"))).expanduser().resolve()
 CONFIG_FILE = ROOT / "destinations.local.json"
 COLUMNS = ["Company", "Role", "Link", "Location", "Stage", "To-do", "Notes"]
-SUPPORTED = {"csv", "json", "pdf", "google_sheets", "webhook"}
+SUPPORTED = {"csv", "excel", "json", "pdf", "google_sheets", "webhook"}
 
 
 class DestinationError(RuntimeError):
@@ -31,6 +31,7 @@ class DestinationError(RuntimeError):
 def config_template():
     return {"destinations": [
         {"type": "csv", "enabled": True},
+        {"type": "excel", "enabled": False},
         {"type": "json", "enabled": False},
         {"type": "pdf", "enabled": False},
         {"type": "google_sheets", "enabled": False, "spreadsheet_id": "", "worksheet": "Jobs"},
@@ -265,6 +266,10 @@ def export_all(csv_path: Path = DEFAULT_CSV, config_path: Path = CONFIG_FILE,
         try:
             if kind == "csv":
                 result = {"rows": len(jobs), "file": csv_path.name}
+            elif kind == "excel":
+                from excel_export import make_xlsx
+                folder.mkdir(parents=True, exist_ok=True)
+                result = make_xlsx(jobs, folder / "careerops-jobs.xlsx")
             elif kind == "json":
                 folder.mkdir(parents=True, exist_ok=True)
                 result = export_json(jobs, folder / "jobs.json")

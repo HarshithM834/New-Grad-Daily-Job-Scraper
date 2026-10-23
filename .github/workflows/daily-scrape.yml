@@ -41,13 +41,16 @@ jobs:
             chmod 600 "$RUNNER_TEMP/careerops-sa.json"
             echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/careerops-sa.json" >> "$GITHUB_ENV"
           fi
-      - name: Scrape all three sources and sync configured destinations
+      - name: Collect six sources and synchronize configured destinations
         env:
           MAX_JOBS_PER_SOURCE: '50'
           SCROLL_STEPS: '24'
+          MAX_COMMUNITY_JOBS: '150'
+          CAREEROPS_GITHUB_SOURCES: 'all'
+          CAREEROPS_CATEGORIES: 'all'
           CAREEROPS_DESTINATIONS_JSON: ${{ secrets.CAREEROPS_DESTINATIONS_JSON }}
           CAREEROPS_WEBHOOK_TOKEN: ${{ secrets.CAREEROPS_WEBHOOK_TOKEN }}
-        run: python scraper.py
+        run: python careerops.py
       - name: Commit tracker and observability records
         if: always()
         run: |

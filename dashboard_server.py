@@ -33,6 +33,11 @@ FEEDS = [
     {"id": "SWE", "name": "Software Engineering", "url": "https://www.newgrad-jobs.com/?k=swe"},
     {"id": "DE", "name": "Data Engineering", "url": "https://www.newgrad-jobs.com/?k=de"},
     {"id": "AI/ML", "name": "AI / Machine Learning", "url": "https://www.newgrad-jobs.com/?k=aiml"},
+    {"id": "simplify", "name": "Simplify New Grad", "url": "https://github.com/SimplifyJobs/New-Grad-Positions"},
+    {"id": "vansh", "name": "New Grad 2027 by V", "url": "https://github.com/vanshb03/New-Grad-2027"},
+    {"id": "speedy-swe", "name": "SpeedyApply SWE", "url": "https://github.com/speedyapply/2027-SWE-College-Jobs"},
+    {"id": "speedy-aiml", "name": "SpeedyApply AI/ML", "url": "https://github.com/speedyapply/2027-AI-College-Jobs"},
+    {"id": "applyguy", "name": "ApplyGuy New Grad", "url": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"},
 ]
 AGGREGATORS = {"jobright.ai", "indeed.com", "linkedin.com", "glassdoor.com", "ziprecruiter.com", "monster.com", "newgrad-jobs.com"}
 WRITE_LOCK = threading.Lock()
@@ -122,6 +127,7 @@ def load_state(tracker: Path = CSV_FILE, metadata_path: Path = METADATA_FILE,
             "notes": row["Notes"],
             "source": m.get("category") if m.get("category") in {"SWE", "DE", "AI/ML"} else "Unknown",
             "added_at": m.get("added_at") or None,
+            "source_provider": m.get("source_id") or "newgrad-jobs",
             "aggregator": is_aggregator(row["Link"]),
         })
     stages = Counter(j["stage"] or "Uncategorized" for j in jobs)
@@ -221,6 +227,16 @@ class DashboardHandler(BaseHTTPRequestHandler):
             payload = {"exported_at": datetime.now(timezone.utc).isoformat(),
                        "jobs": exports.read_jobs(CSV_FILE)}
             self.send_headers(200, "application/json; charset=utf-8", json.dumps(payload).encode())
+            return
+        if route == "/download/jobs.xlsx":
+            try:
+                from excel_export import make_xlsx
+                path = ROOT / "exports" / "careerops-jobs.xlsx"
+                make_xlsx(exports.read_jobs(CSV_FILE), path)
+                self.send_headers(200, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", path.read_bytes())
+            except Exception:
+                LOGGER.exception("Excel export failed")
+                self.reply(500, {"error": "Excel export unavailable; install optional artifact_tool"})
             return
         if route == "/download/report.pdf":
             try:
