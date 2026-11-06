@@ -97,6 +97,13 @@
     "source_id": "applyguy",
     "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
   },
+  "https://advisorgroup.wd1.myworkdayjobs.com/en-US/advisor_career_site/job/Scottsdale-AZ/Quantitative-Analyst-II_R0005358": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
   "https://aero.wd5.myworkdayjobs.com/en-US/external/job/Chantilly-VA/IC-2027-Software-Integration-Engineer_R017007": {
     "added_at": "2026-11-01T18:18:03.552585+00:00",
     "category": "SWE",
@@ -288,6 +295,13 @@
   },
   "https://amazon.jobs/en/jobs/10597112/software-dev-engineer-i-security-platform?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-11-05T20:29:53.330203+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "simplify",
+    "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
+  },
+  "https://amazon.jobs/en/jobs/10597803/software-development-engineer-amazon-leo-early-career-2027-us?utm_source=Simplify&ref=Simplify": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "simplify",
@@ -540,6 +554,13 @@
   },
   "https://apply.workable.com/jeffreym-consulting/j/3680F24D2F/": {
     "added_at": "2026-11-05T20:29:53.330203+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://apply.workable.com/persimmons-ai/j/E8AF3CDFB3/": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "AI/ML",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
@@ -1028,6 +1049,13 @@
     "source_id": "speedy-swe",
     "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
+  "https://boards.greenhouse.io/spacex/jobs/8932368002?gh_jid=8932368002": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://bodyspec.applytojob.com/apply/YsrsS9yEg7/Junior-Developer?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-30T18:27:30.498660+00:00",
     "category": "SWE",
@@ -1143,6 +1171,13 @@
   "https://bristolmyerssquibb.wd5.myworkdayjobs.com/en-US/bms/job/Princeton---NJ---US/Associate-Engineer--Analytical-AI-Engineering_R1608005": {
     "added_at": "2026-10-31T17:32:00.354219+00:00",
     "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://bristolmyerssquibb.wd5.myworkdayjobs.com/en-US/bms/job/Princeton---NJ---US/Data-Engineer--Clinical-Operations_R1608237-1": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "DE",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
     "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
@@ -2043,6 +2078,13 @@
     "source_id": "applyguy",
     "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
   },
+  "https://directsupply.wd501.myworkdayjobs.com/en-US/direct-supply-careers/job/Milwaukee-WI/Software-Engineer_REQ-2026-2629": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://divergehealth.org/jobs/?gh_jid=4840575007&utm_source=vansh&ref=vansh": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
     "category": "SWE",
@@ -2066,6 +2108,13 @@
   },
   "https://draper.wd5.myworkdayjobs.com/en-US/draper_careers/job/Cambridge-MA/Software-Flight-Engr_JR003108": {
     "added_at": "2026-11-05T20:29:53.330203+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://earlywarning.wd5.myworkdayjobs.com/en-US/earlywarningcareers/job/Scottsdale/Software-Engineer---Java--Paze_REQ2026933": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-swe",
@@ -2242,6 +2291,13 @@
   "https://flowspace.applytojob.com/apply/JIaAHiU2dl/AI-Strategy-Operations-Associate": {
     "added_at": "2026-11-04T20:18:33.790133+00:00",
     "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://fnbcorp.wd501.myworkdayjobs.com/en-US/fnbcorp/job/Pittsburgh-PA/Data-Analytics-Engineer-1---Pittsburgh-or-Hermitage--PA_2026-02664": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "DE",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
     "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
@@ -2563,6 +2619,13 @@
   },
   "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-PR-AGUADILLA-110--Rd-110-N-Km-288--RD110/Software-Engineer-I--Hybrid---Aguadilla--PR-_01884363": {
     "added_at": "2026-10-28T18:41:12.650718+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "applyguy",
+    "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
+  },
+  "https://globalhr.wd5.myworkdayjobs.com/rec_rtx_ext_gateway/job/US-PR-AGUADILLA-110--Rd-110-N-Km-288--RD110/Software-Engineer-I--Hybrid---Aguadilla--PR-_01887705": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "applyguy",
@@ -3975,6 +4038,69 @@
     "source_id": "vansh",
     "source_page": "https://github.com/vanshb03/New-Grad-2027"
   },
+  "https://go.vansh.nyc/1jB?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1ji?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1k0?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1kI?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1kJ?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1kL?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1kT?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1ky?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1l1?s=A": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
   "https://go.vansh.nyc/AC?s=A": {
     "added_at": "2026-10-25T17:05:27.146648+00:00",
     "category": "SWE",
@@ -5375,6 +5501,13 @@
     "source_id": "speedy-aiml",
     "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
   },
+  "https://highmarkhealth.wd1.myworkdayjobs.com/en-US/highmark/job/PA-Working-at-Home---Pennsylvania/Associate-Software-Engineer_J288021-1": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://hntb.wd5.myworkdayjobs.com/hntb_university_careers/job/Tallahassee-FL/Returning-New-Grad-Software-Engineer-I--For-Current-Previous-HNTB-Interns-ONLY-_R-32175?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-27T18:34:50.362998+00:00",
     "category": "SWE",
@@ -5388,6 +5521,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
     "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://homedepot.wd5.myworkdayjobs.com/en-US/careerdepot/job/GEORGIA---VIRTUAL---GA01/Software-Engineer-2--Remote-_Req197990": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
   "https://homedepot.wd5.myworkdayjobs.com/en-US/careerdepot/job/STORE-SUPPORT-CENTER-ATLANTA---9090/Data-Analyst---Supply-Chain_Req197256": {
     "added_at": "2026-11-04T20:18:33.790133+00:00",
@@ -5500,6 +5640,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "vansh",
     "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://intel.wd1.myworkdayjobs.com/en-US/external/job/US-Oregon-Hillsboro/Cloud-Software-Development-Engineer_JR0288916": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
   "https://intelliforceitsolutionsgroup.applytojob.com/apply/7PKaVRIpoz/Junior-Software-Engineer-Prime?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
@@ -6201,6 +6348,13 @@
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
+  "https://job-boards.greenhouse.io/twitch/jobs/8917377002": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://job-boards.greenhouse.io/twitch/jobs/8929545002?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-11-05T20:29:53.330203+00:00",
     "category": "SWE",
@@ -6229,8 +6383,22 @@
     "source_id": "speedy-swe",
     "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
+  "https://job-boards.greenhouse.io/ultimagenomics/jobs/6250742004": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://job-boards.greenhouse.io/verkada/jobs/5280545007": {
     "added_at": "2026-11-03T19:58:51.837334+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://job-boards.greenhouse.io/verkada/jobs/5283644007": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-swe",
@@ -6887,6 +7055,13 @@
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
+  "https://jobs.lever.co/erg/ffa7e5a8-5d49-4608-a3b0-9a5ff07a3f0a": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
   "https://jobs.lever.co/fiscalnote/51a2e18f-1af1-416c-9544-5bede8e9537c": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
     "category": "SWE",
@@ -7120,6 +7295,13 @@
   },
   "https://jobs.smartrecruiters.com/Sia/744000156855580-generative-ai-consultant-?oga=true": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://jobs.smartrecruiters.com/Sia/744000159953609-generative-ai-consultant-?oga=true": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "AI/ML",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
@@ -7386,6 +7568,13 @@
   },
   "https://leidos.wd5.myworkdayjobs.com/en-US/external/job/Chesapeake-VA/Website---Multimedia-Content-Developer_R-00196046": {
     "added_at": "2026-11-03T19:58:51.837334+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://leidos.wd5.myworkdayjobs.com/en-US/external/job/Huntsville-AL/Entry-Level-Software-Tester_R-00196288": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-swe",
@@ -8490,6 +8679,13 @@
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
+  "https://mastercard.wd1.myworkdayjobs.com/en-US/corporatecareers/job/OFallon-Missouri/Site-Reliability-Engineer-I_R-294460": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://mastercard.wd1.myworkdayjobs.com/en-US/corporatecareers/job/OFallon-Missouri/Software-Engineer-I_R-292618-1?utm_source=vansh": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
     "category": "SWE",
@@ -8506,6 +8702,20 @@
   },
   "https://mdtkangaroo.wd108.myworkdayjobs.com/en-US/minimedcareers/job/Northridge-California-United-States-of-America/Data-Scientist--Software-Engineer-II_R-801953": {
     "added_at": "2026-10-25T17:05:27.146648+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://medtronic.wd1.myworkdayjobs.com/en-US/medtroniccareers/job/Mounds-View-Minnesota-United-States-of-America/Software-Quality-Engineer-I_R72406-1": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://medtronic.wd1.myworkdayjobs.com/en-US/medtroniccareers/job/Mounds-View-Minnesota-United-States-of-America/Software-Test-Engineer-I_R80875-1": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-swe",
@@ -8552,6 +8762,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
+  },
+  "https://mmc.wd1.myworkdayjobs.com/en-US/careers/job/Louisville---West-Market/Data-Analyst_R_366564": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
   },
   "https://moog.wd5.myworkdayjobs.com/en-US/moog_external_career_site/job/Santa-Barbara-CA/Embedded-Software-Engineer_R-26-17229": {
     "added_at": "2026-10-30T18:27:30.498660+00:00",
@@ -8616,6 +8833,13 @@
     "source_id": "speedy-aiml",
     "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
   },
+  "https://nationwide.wd1.myworkdayjobs.com/en-US/nationwide_career/job/Iowa---Des-Moines-1100-Locust-Street/Engineer--Software-Engineer_101075": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://nbtbancorp.wd12.myworkdayjobs.com/en-US/epic/job/Rochester-New-York/Software-Engineer-I_JR5170": {
     "added_at": "2026-10-25T17:05:27.146648+00:00",
     "category": "SWE",
@@ -8660,6 +8884,13 @@
   },
   "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-California-Manhattan-Beach/Configurable-On-Board-Router--COR--Team---Software-Engineer--AHT-_R10247177": {
     "added_at": "2026-11-04T20:18:33.790133+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://ngc.wd1.myworkdayjobs.com/en-US/northrop_grumman_external_site/job/United-States-California-Manhattan-Beach/Resource-Control-Team-Software-Engineer--Level-1-or-2----AHT_R10247178": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-swe",
@@ -8790,6 +9021,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "applyguy",
     "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
+  },
+  "https://nordstrom.wd501.myworkdayjobs.com/en-US/nordstrom_careers/job/Seattle-WA/Engineer-1--iOS--Hybrid---Seattle--WA-_R-895887": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
   "https://nuro.ai/careersitem?gh_jid=8248317": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
@@ -9141,6 +9379,13 @@
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
+  "https://priceline.wd1.myworkdayjobs.com/en-US/priceline/job/New-York/Associate-Software-Engineer_R5911": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
   "https://priceline.wd1.myworkdayjobs.com/priceline/job/New-York/Associate-Software-Engineer_R5911": {
     "added_at": "2026-11-05T20:29:53.330203+00:00",
     "category": "SWE",
@@ -9252,6 +9497,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "applyguy",
     "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
+  },
+  "https://recruiting.paylocity.com/Recruiting/Jobs/Details/4641203": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
   "https://redcarrot.applytojob.com/apply/BiFOfyN3MV/Business-Operations-AI-Innovation-Associate": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
@@ -10275,6 +10527,27 @@
     "source_id": "speedy-swe",
     "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
+  "https://www.amazon.jobs/jobs/10597803/apply": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://www.amazon.jobs/jobs/10598021/apply": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
+  },
+  "https://www.asm.com/open-vacancies/?gh_jid=5019821101": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "applyguy",
+    "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
+  },
   "https://www.bluerivertechnology.com/job/?gh_jid=8337794": {
     "added_at": "2026-10-31T17:32:00.354219+00:00",
     "category": "SWE",
@@ -10400,6 +10673,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "applyguy",
     "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
+  },
+  "https://www.equipmentshare.com/careers/openings/?gh_jid=8319404": {
+    "added_at": "2026-11-06T19:52:31.401214+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-swe",
+    "source_page": "https://github.com/speedyapply/2027-SWE-College-Jobs"
   },
   "https://www.esri.com/careers/5262837007?gh_jid=5262837007": {
     "added_at": "2026-10-28T18:41:12.650718+00:00",
