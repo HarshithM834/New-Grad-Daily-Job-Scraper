@@ -1840,6 +1840,13 @@
     "source_id": "applyguy",
     "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
   },
+  "https://careers-peraton.icims.com/jobs/173645/entry-level-software-engineer---ts-sci-w-poly/job": {
+    "added_at": "2026-11-16T22:45:43.907650+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "applyguy",
+    "source_page": "https://github.com/ApplyGuy/2027-New-Grad-Jobs"
+  },
   "https://careers-riversideresearch.icims.com/jobs/4381/job?mobile=true&needsRedirect=false&utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
     "category": "AI/ML",
@@ -2610,6 +2617,13 @@
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
+  "https://egug.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_1/job/26016677?utm_source=Simplify&ref=Simplify": {
+    "added_at": "2026-11-16T22:45:43.907650+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "simplify",
+    "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
+  },
   "https://eihu.fa.us8.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX/job/2618210?utm_source=vansh": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
     "category": "SWE",
@@ -2626,6 +2640,13 @@
   },
   "https://equifax.wd5.myworkdayjobs.com/en-US/external/job/USA---Georgia---Alpharetta---30005/Data-Scientist---Alternative-Finance_J00180061": {
     "added_at": "2026-11-04T20:18:33.790133+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://equinix.wd1.myworkdayjobs.com/en-US/external/job/Dallas-Infomart-Office-DAI/AI-Machine-Learning-Experience-Engineer_JR-164652": {
+    "added_at": "2026-11-16T22:45:43.907650+00:00",
     "category": "AI/ML",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
@@ -4325,6 +4346,27 @@
     "source_id": "vansh",
     "source_page": "https://github.com/vanshb03/New-Grad-2027"
   },
+  "https://go.vansh.nyc/1A0?s=A": {
+    "added_at": "2026-11-16T22:45:43.907650+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1Ar?s=A": {
+    "added_at": "2026-11-16T22:45:43.907650+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1As?s=A": {
+    "added_at": "2026-11-16T22:45:43.907650+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
   "https://go.vansh.nyc/1bF?s=A": {
     "added_at": "2026-11-03T19:58:51.837334+00:00",
     "category": "SWE",
@@ -5280,6 +5322,13 @@
   "https://go.vansh.nyc/1zO?s=A": {
     "added_at": "2026-11-15T19:16:46.778498+00:00",
     "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1zZ?s=A": {
+    "added_at": "2026-11-16T22:45:43.907650+00:00",
+    "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "vansh",
     "source_page": "https://github.com/vanshb03/New-Grad-2027"
