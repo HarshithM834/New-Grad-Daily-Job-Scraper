@@ -783,6 +783,13 @@
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
+  "https://apply.workable.com/toloka-ai/j/265D49A1C4/": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
   "https://apply.workable.com/toloka-ai/j/40FBD38D7A/": {
     "added_at": "2026-11-09T22:53:59.235627+00:00",
     "category": "AI/ML",
@@ -799,6 +806,13 @@
   },
   "https://apply.workable.com/toloka-ai/j/BE49B69565/": {
     "added_at": "2026-11-22T20:10:36.948770+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "speedy-aiml",
+    "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://apply.workable.com/toloka-ai/j/C43C74635F/": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
     "category": "AI/ML",
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
@@ -1632,6 +1646,13 @@
   },
   "https://cae.wd3.myworkdayjobs.com/career/job/Mirabel/Dveloppeureuse-logiciel-junior---Bancs-d-essais--Rive-Nord-_123921-1?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "simplify",
+    "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
+  },
+  "https://calyxcontainers.applytojob.com/apply/HHSphZTCc2/Junior-Software-Developer-Print-Packaging?utm_source=Simplify&ref=Simplify": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
     "category": "SWE",
     "eligibility": "curated-new-grad",
     "source_id": "simplify",
@@ -4850,9 +4871,72 @@
     "source_id": "vansh",
     "source_page": "https://github.com/vanshb03/New-Grad-2027"
   },
+  "https://go.vansh.nyc/1GR?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1GS?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "AI/ML",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1GT?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
   "https://go.vansh.nyc/1Gh?s=A": {
     "added_at": "2026-11-21T19:58:30.081708+00:00",
     "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1Gs?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1HF?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1HG?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "DE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1Hl?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1Hx?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "vansh",
+    "source_page": "https://github.com/vanshb03/New-Grad-2027"
+  },
+  "https://go.vansh.nyc/1Hy?s=A": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "AI/ML",
     "eligibility": "curated-new-grad",
     "source_id": "vansh",
     "source_page": "https://github.com/vanshb03/New-Grad-2027"
@@ -9050,6 +9134,13 @@
     "source_id": "simplify",
     "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
+  "https://jobs.ashbyhq.com/webai/571ff25a-c3ad-44f5-8f35-f4a7944899df/application?embed=true&utm_source=Simplify&ref=Simplify": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "simplify",
+    "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
+  },
   "https://jobs.ashbyhq.com/whoop/0623a9e9-d7bb-4ee5-8100-51c68df81133/application?embed=true&utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
     "category": "SWE",
@@ -9973,6 +10064,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
     "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://latticesemi.wd5.myworkdayjobs.com/latticesemiconductorscareers/job/Duluth-Georgia/Junior-BMC-Firmware-Engineer_R-103309?utm_source=Simplify&ref=Simplify": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "simplify",
+    "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
   "https://leidos.wd5.myworkdayjobs.com/External/job/Bethesda-MD/Jr-Software-Engineer_R-00195656?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-28T18:41:12.650718+00:00",
@@ -12416,6 +12514,13 @@
     "eligibility": "curated-new-grad",
     "source_id": "speedy-aiml",
     "source_page": "https://github.com/speedyapply/2027-AI-College-Jobs"
+  },
+  "https://sierraspace.wd1.myworkdayjobs.com/en-US/Sierra_Space_External_Career_Site/job/Centennial-CO/Software-Engineer-I---Ground-Software_R26393-1?utm_source=Simplify&ref=Simplify": {
+    "added_at": "2026-11-24T00:37:50.603803+00:00",
+    "category": "SWE",
+    "eligibility": "curated-new-grad",
+    "source_id": "simplify",
+    "source_page": "https://github.com/SimplifyJobs/New-Grad-Positions"
   },
   "https://sierraspace.wd1.myworkdayjobs.com/en-US/Sierra_Space_External_Career_Site/job/Louisville-CO/Software-Engineer-I---DevOps---DevSecOps_R26394-1?utm_source=Simplify&ref=Simplify": {
     "added_at": "2026-10-23T17:45:06.469328+00:00",
